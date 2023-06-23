@@ -1,0 +1,15 @@
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\bin\Debug\net6.0\Task-4.8.1-2.exe
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\bin\Debug\net6.0\Task-4.8.1-2.deps.json
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\bin\Debug\net6.0\Task-4.8.1-2.runtimeconfig.json
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\bin\Debug\net6.0\Task-4.8.1-2.dll
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\bin\Debug\net6.0\Task-4.8.1-2.pdb
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.AssemblyInfo.cs
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.dll
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\refint\Task-4.8.1-2.dll
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.pdb
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\Task-4.8.1-2.genruntimeconfig.cache
+C:\Users\user\Desktop\C#\skillbox\CSharp\Task-4.8.1\Task-4.8.1\obj\Debug\net6.0\ref\Task-4.8.1-2.dll
