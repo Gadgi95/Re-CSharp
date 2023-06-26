@@ -8,4 +8,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Path.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Path.json" />
+  </ItemGroup>
+
 </Project>
