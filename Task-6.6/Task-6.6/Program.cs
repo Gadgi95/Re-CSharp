@@ -17,10 +17,12 @@
 //1#20.12.2021 00:12#Иванов Иван Иванович#25#176#05.05.1992#город Москва
 //2#15.12.2021 03:12#Алексеев Алексей Иванович#24#176#05.11.1980#город Томск
 
+using Task_6._6;
+Repository repository = new Repository();
 
-string path = @"C:\Users\user\Desktop\C#\skillbox\CSharp\Task-6.6\Employee Handbook.txt";
+string path = "Employee Handbook.txt";
 
-var consoleText = string.Format(
+string consoleText = string.Format(
     "Добро пожаловать в справочник{0}" +
     "1 - вывести справочник на экран{0}" +
     "2 - заполнить данные и добавить новую запись{0}", Environment.NewLine);
@@ -46,11 +48,13 @@ if(valueReadLine == 1 )
 {
     if(File.Exists(path))
     {
-        string readFile = File.ReadAllText(path);
-        string[] arrayReadFile = readFile.Split('#');
-        foreach(string str in arrayReadFile)
+        Worker[] arrayAllWorkers = repository.GetAllWorkers();
+
+        foreach(Worker worker in arrayAllWorkers)
         {
-            Console.Write(str + " ");
+            repository.PrintWorker(worker);
+
+            Console.Write(repository.ParsingWorkerInText(worker) + "\n");
         }
     }
     else
@@ -60,7 +64,7 @@ if(valueReadLine == 1 )
 }
 else if(valueReadLine == 2 )
 {
-    AddNewEmployee();
+    repository.AddWorker(repository.ParsingTextInWorker(UserInputNewEmployee()));
 }
 else
 {
@@ -86,32 +90,32 @@ string UserInputNewEmployee()
     Console.WriteLine("Введите место рождения сотрудника:");
     string placeOfBirth = Console.ReadLine();
 
-    return $"#{DateTime.Now}#{fullName}#{age}#{height}#{birthDay}#{placeOfBirth}";
+    return $"{DateTime.Now}#{fullName}#{age}#{height}#{birthDay}#{placeOfBirth}";
 }
 
-void AddNewEmployee()
-{
-    if (!File.Exists(path))
-    {
-        File.WriteAllText(path, "1" + UserInputNewEmployee());
-        return;
-    }
+//void AddNewEmployee()
+//{
+//    if (!File.Exists(path))
+//    {
+//        File.WriteAllText(path, "1" + UserInputNewEmployee());
+//        return;
+//    }
 
-    string[] arrayFileEmployee = File.ReadAllLines(path);
+//    string[] arrayFileEmployee = File.ReadAllLines(path);
 
-    string newEmployee = (arrayFileEmployee.Length + 1) + UserInputNewEmployee();
+//    string newEmployee = (arrayFileEmployee.Length + 1) + UserInputNewEmployee();
 
-    string[] reArrayFileEmployee = new string[arrayFileEmployee.Length + 1];
+//    string[] reArrayFileEmployee = new string[arrayFileEmployee.Length + 1];
 
-    for (int i = 0; i < arrayFileEmployee.Length; i++)
-    {
-            reArrayFileEmployee[i] = arrayFileEmployee[i];
-    }
+//    for (int i = 0; i < arrayFileEmployee.Length; i++)
+//    {
+//            reArrayFileEmployee[i] = arrayFileEmployee[i];
+//    }
 
-    reArrayFileEmployee[reArrayFileEmployee.Length - 1] = newEmployee;
+//    reArrayFileEmployee[reArrayFileEmployee.Length - 1] = newEmployee;
 
-    File.WriteAllLines(path, reArrayFileEmployee);
-}
+//    File.WriteAllLines(path, reArrayFileEmployee);
+//}
 
 Console.ReadKey();
 

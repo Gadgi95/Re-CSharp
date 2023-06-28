@@ -17,18 +17,8 @@ namespace Task_6._6
 
     public class Repository
     {
-        string path = @"C:\Users\user\Desktop\C#\skillbox\CSharp\Task-6.6\Employee Handbook.txt";
+        string path = @"Employee Handbook.txt";
 
-        public struct Worker
-        {
-            public int Id { get; set; }
-            public DateTime dateTimeAddedTheEntry { get; set; }
-            public string fullName { get; set; }
-            public int age { get; set; }
-            public int height { get; set; }
-            public DateTime birthDay { get; set; }
-            public string placeOfBirth { get; set; }
-        }
 
         public Worker[] GetAllWorkers()
         {
@@ -37,11 +27,11 @@ namespace Task_6._6
             {
                 string readFile = File.ReadAllText(path); // Путь к фаилу
 
-                string[] arrayReadFile = readFile.Split('\n'); //Создание и заполнение массива строками из фаила
+                string[] arrayReadFile = readFile.Split(Environment.NewLine); //Создание и заполнение массива строками из фаила
 
                 Worker[] workers = new Worker[arrayReadFile.Length];
 
-                for (int i = 0; i <= arrayReadFile.Length; i++)
+                for (int i = 0; i <= arrayReadFile.Length - 1; i++)
                 {
                     workers[i] = ParsingTextInWorker(arrayReadFile[i]);
                 }
@@ -118,9 +108,9 @@ namespace Task_6._6
             // присваиваем worker уникальный ID,
             // дописываем нового worker в файл
 
-            if (!File.Exists(path)) //Добавить путь к фаилу через JSON
+            if (!File.Exists(path)) 
             {
-                File.WriteAllText(" ", "1" + ParsingWorkerInText(worker));
+                File.WriteAllText(path, "1" + ParsingWorkerInText(worker));
             }
             else
             {
@@ -174,27 +164,50 @@ namespace Task_6._6
 
             Worker worker = new Worker();
 
-            worker.Id = int.Parse(parsingTextInWorker[0]);
+            if (!int.TryParse(parsingTextInWorker[0], out int id))
+            {
+                worker.Id = 0;
 
-            worker.dateTimeAddedTheEntry = DateTime.Parse($"{parsingTextInWorker[1]}");
+                worker.dateTimeAddedTheEntry = DateTime.Parse($"{parsingTextInWorker[0]}");
 
-            worker.fullName = parsingTextInWorker[2];
+                worker.fullName = parsingTextInWorker[1];
 
-            worker.age = int.Parse(parsingTextInWorker[3]);
+                worker.age = int.Parse(parsingTextInWorker[2]);
 
-            worker.height = int.Parse(parsingTextInWorker[4]);
+                worker.height = int.Parse(parsingTextInWorker[3]);
 
-            worker.birthDay = DateTime.Parse($"{parsingTextInWorker[5]}");
+                worker.birthDay = DateTime.Parse($"{parsingTextInWorker[4]}");
 
-            worker.placeOfBirth = parsingTextInWorker[6];
+                worker.placeOfBirth = parsingTextInWorker[5];
+            }
+            else
+            {
+                worker.Id = id;
+
+                worker.dateTimeAddedTheEntry = DateTime.Parse($"{parsingTextInWorker[1]}");
+
+                worker.fullName = parsingTextInWorker[2];
+
+                worker.age = int.Parse(parsingTextInWorker[3]);
+
+                worker.height = int.Parse(parsingTextInWorker[4]);
+
+                worker.birthDay = DateTime.Parse($"{parsingTextInWorker[5]}");
+
+                worker.placeOfBirth = parsingTextInWorker[6];
+            }            
 
             return worker;
         }
 
         public string ParsingWorkerInText(Worker worker) // Парсинг объекта worker в строку без ID
         {
-            return $"#{worker.dateTimeAddedTheEntry}#{worker.fullName}#{worker.age}#{worker.height}#{worker.birthDay}#{worker.placeOfBirth}";
+            return $"{worker.Id}#{worker.dateTimeAddedTheEntry}#{worker.fullName}#{worker.age}#{worker.height}#{worker.birthDay}#{worker.placeOfBirth}";
+        }
+
+        public void PrintWorker(Worker worker) 
+        {
+           Console.Write($"{worker.Id} {worker.dateTimeAddedTheEntry} {worker.fullName} {worker.age} {worker.height} {worker.birthDay} {worker.placeOfBirth}");
         }
     }
-
 }
