@@ -18,6 +18,7 @@
 //2#15.12.2021 03:12#Алексеев Алексей Иванович#24#176#05.11.1980#город Томск
 
 using Task_6._6;
+
 Repository repository = new Repository();
 
 string path = "Employee Handbook.txt";
@@ -53,8 +54,6 @@ if(valueReadLine == 1 )
         foreach(Worker worker in arrayAllWorkers)
         {
             repository.PrintWorker(worker);
-
-            Console.Write(repository.ParsingWorkerInText(worker) + "\n");
         }
     }
     else
@@ -92,30 +91,6 @@ string UserInputNewEmployee()
 
     return $"{DateTime.Now}#{fullName}#{age}#{height}#{birthDay}#{placeOfBirth}";
 }
-
-//void AddNewEmployee()
-//{
-//    if (!File.Exists(path))
-//    {
-//        File.WriteAllText(path, "1" + UserInputNewEmployee());
-//        return;
-//    }
-
-//    string[] arrayFileEmployee = File.ReadAllLines(path);
-
-//    string newEmployee = (arrayFileEmployee.Length + 1) + UserInputNewEmployee();
-
-//    string[] reArrayFileEmployee = new string[arrayFileEmployee.Length + 1];
-
-//    for (int i = 0; i < arrayFileEmployee.Length; i++)
-//    {
-//            reArrayFileEmployee[i] = arrayFileEmployee[i];
-//    }
-
-//    reArrayFileEmployee[reArrayFileEmployee.Length - 1] = newEmployee;
-
-//    File.WriteAllLines(path, reArrayFileEmployee);
-//}
 
 Console.ReadKey();
 

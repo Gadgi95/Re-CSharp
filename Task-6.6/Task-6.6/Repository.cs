@@ -49,20 +49,20 @@ namespace Task_6._6
 
         public Worker GetWorkerById(int id)
         {
-            // происходит чтение из файла, возвращается Worker
-            // с запрашиваемым ID
+            /// происходит чтение из файла, возвращается Worker
+            /// с запрашиваемым ID
             Worker newWorker = new Worker();
 
-            if (!File.Exists(path)) // Добавить путь к фаилу
+            if (!File.Exists(path))
             {
                 Console.WriteLine("Фаил не найден");
                 return newWorker;
             }
             else
             {
-                string readFile = File.ReadAllText(path); // Путь к фаилу
+                string readFile = File.ReadAllText(path);
 
-                string[] arrayReadFile = readFile.Split('\n'); //Создание и заполнение массива строками из фаила
+                string[] arrayReadFile = readFile.Split('\n');
 
                 for (int i = 0; i <= arrayReadFile.Length; i++)
                 {
@@ -79,9 +79,9 @@ namespace Task_6._6
 
         public void DeleteWorker(int id)
         {
-            // считывается файл, находится нужный Worker
-            // происходит запись в файл всех Worker,
-            // кроме удаляемого
+            /// считывается файл, находится нужный Worker
+            /// происходит запись в файл всех Worker,
+            /// кроме удаляемого
 
             if (!File.Exists(path)) // Добавить путь к фаилу
             {
@@ -105,8 +105,8 @@ namespace Task_6._6
 
         public void AddWorker(Worker worker)
         {
-            // присваиваем worker уникальный ID,
-            // дописываем нового worker в файл
+            /// присваиваем worker уникальный ID,
+            /// дописываем нового worker в файл
 
             if (!File.Exists(path)) 
             {
@@ -138,9 +138,9 @@ namespace Task_6._6
 
         public Worker[] GetWorkersBetweenTwoDates(DateTime dateFrom, DateTime dateTo)
         {
-            // здесь происходит чтение из файла
-            // фильтрация нужных записей
-            // и возврат массива считанных экземпляров
+            /// здесь происходит чтение из файла
+            /// фильтрация нужных записей
+            /// и возврат массива считанных экземпляров
 
             Worker[] workers = GetAllWorkers();
 
@@ -158,7 +158,7 @@ namespace Task_6._6
 
 
 
-        public Worker ParsingTextInWorker(string text) // Парсинг целой строки в объект worker
+        public Worker ParsingTextInWorker(string text) /// Парсинг целой строки в объект worker
         {
             string[] parsingTextInWorker = text.Split('#');
 
@@ -200,14 +200,14 @@ namespace Task_6._6
             return worker;
         }
 
-        public string ParsingWorkerInText(Worker worker) // Парсинг объекта worker в строку без ID
+        public string ParsingWorkerInText(Worker worker) /// Парсинг объекта worker в строку без ID
         {
             return $"{worker.Id}#{worker.dateTimeAddedTheEntry}#{worker.fullName}#{worker.age}#{worker.height}#{worker.birthDay}#{worker.placeOfBirth}";
         }
 
-        public void PrintWorker(Worker worker) 
+        public void PrintWorker(Worker worker) ///Вывод объекта Worker в консоль строкой
         {
-           Console.Write($"{worker.Id} {worker.dateTimeAddedTheEntry} {worker.fullName} {worker.age} {worker.height} {worker.birthDay} {worker.placeOfBirth}");
+           Console.Write($"{worker.Id} {worker.dateTimeAddedTheEntry} {worker.fullName} {worker.age} {worker.height} {worker.birthDay} {worker.placeOfBirth}" + "\n");
         }
     }
 }
