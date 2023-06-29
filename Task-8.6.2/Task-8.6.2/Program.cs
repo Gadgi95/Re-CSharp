@@ -50,32 +50,27 @@ void SearchContact()
 
     long.TryParse(inputPhoneNumber, out long phoneNumber);
 
-    foreach (KeyValuePair<long, string> e in phonebook)
+    if(phonebook.TryGetValue(phoneNumber, out string contactName))
     {
+        Console.WriteLine($"Номер телефона найден у контакта: {contactName}");
+    }
+    else
+    {
+        Console.WriteLine("Контакт не найден");
+        Console.WriteLine("Введите имя контакта, для добавление номера в справочник");
 
-        if (phoneNumber == e.Key)
+        string inputName = Console.ReadLine();
+
+        if (inputName == null || inputName == "")
         {
-            Console.WriteLine($"Номер телефона найден у контакта: {e.Value}");
             return;
         }
 
-        else
-        {
-            Console.WriteLine("Контакт не найден");
-            Console.WriteLine("Введите имя контакта, для добавление номера в справочник");
-
-            string inputName = Console.ReadLine();
-
-            if(inputName == null || inputName == "")
-            {
-                return;
-            }
-
-            phonebook.Add(phoneNumber, inputName);
-
-        }
+        phonebook.Add(phoneNumber, inputName);
     }
+
 }
+
 
 AddAllContacts();
 SearchContact();
