@@ -21,10 +21,12 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        int inputNumOne;
-        int inputNumTwo;
-        char inputChar;
-        int result;
+        int inputNumOne = 0;
+        int inputNumTwo = 0;
+        char inputChar = ' ';
+        int inputCharIndex = 0;
+        int result = 0;
+        string outPut = " ";
 
         public MainWindow()
         {
@@ -90,59 +92,70 @@ namespace Calculator
         {
             int.TryParse(TxtBox.Text, out inputNumOne);
             inputChar = '/';
-            TxtBox.Text += "/";
+            TxtBox.Text += '/';
         }
 
         private void BtnMultiply_Click(object sender, RoutedEventArgs e)
         {
             int.TryParse(TxtBox.Text, out inputNumOne);
             inputChar = '*';
-            TxtBox.Text += "*";
+            TxtBox.Text += '*';
         }
 
         private void BtnMinus_Click(object sender, RoutedEventArgs e)
         {
             int.TryParse(TxtBox.Text, out inputNumOne);
             inputChar = '-';
-            TxtBox.Text += "-";
+            TxtBox.Text += '-';
         }
 
         private void BtnPlus_Click(object sender, RoutedEventArgs e)
         {
             int.TryParse(TxtBox.Text, out inputNumOne);
             inputChar = '+';
-            TxtBox.Text += "+";
+            TxtBox.Text += '+';
         }
 
         private void BtnEquals_Click(object sender, RoutedEventArgs e)
         {
             string input = (string)TxtBox.Text;
 
-            //var subString1 = input.Substring(0, input.IndexOf(inputChar));
-
-            //inputNumOne = (int)Convert.ToInt32(subString1);
-
-            var subString = input.Substring(input.IndexOf(inputChar), input.Length-1);
-
-            int.TryParse(subString, out inputNumTwo);
-
-            switch (inputChar)
+            if (string.IsNullOrEmpty(input))
             {
-                case '*':
-                    result = inputNumOne * inputNumTwo; 
-                    break;
-                case '/':
-                    result = inputNumOne / inputNumTwo;
-                    break;
-                case '-':
-                    result = inputNumOne - inputNumTwo;
-                    break;
-                case '+':
-                    result = inputNumOne + inputNumTwo;
-                    break;
+                outPut = "error";
+            }
+            else
+            {
+                inputCharIndex = input.IndexOf(inputChar);
+
+                var subStringNumOne = input.Substring(0, inputCharIndex);
+
+                int.TryParse(subStringNumOne, out inputNumOne);
+
+                var subStringNumTwo = input.Substring(inputCharIndex + 1);
+
+                int.TryParse(subStringNumTwo, out inputNumTwo);
+
+                switch (inputChar)
+                {
+                    case '*':
+                        result = inputNumOne * inputNumTwo;
+                        break;
+                    case '/':
+                        result = inputNumOne / inputNumTwo;
+                        break;
+                    case '-':
+                        result = inputNumOne - inputNumTwo;
+                        break;
+                    case '+':
+                        result = inputNumOne + inputNumTwo;
+                        break;
+                }
             }
 
-            TxtBox.Text = result.ToString();
+            outPut = result.ToString();
+
+            TxtBox.Text = outPut;
         }
     }
 }
