@@ -1,65 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task_10._8v2
+﻿namespace Task_10._8v2
 {
     public class Clients
     {
-        internal string lastName
-        {
-            get => lastName; 
-            set => lastName = value;
-        }
-        internal string firstName
-        {
-            get => firstName; 
-            set => firstName = value;
-        }
-        internal string patronymic
-        {
-            get => patronymic; 
-            set => patronymic = value;
-        }
-        internal long phone
-        {
-            get => phone; 
-            set => phone = value;
-        }
-        internal string seriesAndNumberPasport
-        {
-            get => seriesAndNumberPasport; 
-            set => seriesAndNumberPasport = value;
-        }
-        internal List<Clients> listOfClients
-        { 
-            get => listOfClients; 
-            set => listOfClients = value; 
-
-        }
+        User user = new User();
 
         public Clients() { }
 
-        public Clients(
-            string lastName,
-            string firstName,
-            string patronymic,
-            long phone,
-            string seriesAndNumberPasport)
-        {
-            this.lastName = lastName;
-            this.firstName = firstName;
-            this.patronymic = patronymic;
-            this.phone = phone;
-            this.seriesAndNumberPasport = seriesAndNumberPasport;
-        }
+        /// <summary>
+        /// Название фаила или "неявно указанный путь"
+        /// </summary>
+        string path = @"List of clients.txt";
 
-        public void AddNewClient()
+        List<Client> clients = new List<Client>();
+
+        /// <summary>
+        /// Добавление нового клиента, все данные вводятся через консоль
+        /// </summary>
+        /// <returns>Возвращает строку успешной записи клиента</returns>
+        public string AddNewClient()
 
         {
-            Clients client = new Clients();
+            Client client = new Client();
 
             Console.WriteLine("Введите фамилию сотрудника:");
             client.lastName = Console.ReadLine();
@@ -79,26 +40,163 @@ namespace Task_10._8v2
             Console.WriteLine("Введите серию и номер паспорта:");
             client.seriesAndNumberPasport = Console.ReadLine();
 
-            listOfClients.Add(client);
+            if (!File.Exists(path))
+            {
 
-            Console.WriteLine("Клиент успешно добавлен");
+                File.WriteAllText(path, client.ToString());
+            }
+            else
+            {
+                string readFile = File.ReadAllText(path);
+
+                List<string> listOfClients = File.ReadAllLines(path).ToList();
+
+                listOfClients.Add(client.ToString());
+            }
+            return $"Клиент успешно добавлен в справочник";
         }
 
-        public static string ToString(Clients client)
+        public void AddNewClienOnlyPhoneNumber(long phone)
         {
-
-            return $"Фамилия {client.lastName}"
-                          + $"\nИмя {client.firstName}"
-                          + $"\nОтчество {client.patronymic}"
-                          + $"\nТелефон {client.phone} "
-                          + $"\nСерия и номер паспорта {GetSeriesAndNumberPasportFromeUser(client)}";
+            Client client = new Client(phone);
+            clients.Add(client);
         }
 
-        public static string GetSeriesAndNumberPasportFromeUser(Clients client)
+        /// <summary>
+        /// Возвращает коллекцию типа лист со всеми клиентами
+        /// </summary>
+        /// <returns>Возвращает коллекцию типа лист со всеми клиентами</returns>
+        public List<string> GetAllClient()
         {
-            return System.Text.RegularExpressions.Regex.Replace(client.seriesAndNumberPasport, @"\d", "*");
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("Фаил не найден или список клиентов пуст");
+                return new List<string>();
+            }
+            else
+            {
+                string readFile = File.ReadAllText(path);
+
+                List<string> listOfClients = File.ReadAllLines(path).ToList();
+
+                return listOfClients;
+            }
+
         }
 
+        /// <summary>
+        /// Поиск клиента в фаила по фамилии. 
+        /// Происходит чтение фаила по строкам
+        /// Преобразование строк в объекты клиент и сравнение фамилии
+        /// </summary>
+        /// <param name="lastName"></param>
+        /// <returns>Если клиент найден, возвращает объект клиент из фаила, если нет, нового клиента </returns>
+        public Client SearchClientForPhoneNumber(long phone)
+        {
+            Client returnClient = new Client();
 
+
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("Клиента нет в списке, создать нового?" +
+                    "\n1 - Да" +
+                    "\n2 - Нет");
+
+                if(Console.ReadLine() == "1")
+                {
+                    AddNewClienOnlyPhoneNumber(phone);
+                }
+                else
+                {
+                    Console.WriteLine("Клиент не созда!");
+                }
+                return returnClient;
+            }
+            else
+            {
+
+                string readFile = File.ReadAllText(path);
+
+                List<string> listOfClients = File.ReadAllLines(path).ToList();
+
+                foreach (string textClient in listOfClients)
+                {
+                    Client client = ParsingTextInClient(textClient);
+
+                    if(client.phone == phone)
+                    {
+                         returnClient = client;
+                    }
+                }
+
+                return returnClient;
+            }
+        }
+
+        /// <summary>
+        /// Парсит текст в объект клиент
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Возвращает заполненный данными объект клиент</returns>
+        public Client ParsingTextInClient(string text)
+        {
+            if(string.IsNullOrEmpty(text))
+            {
+                return new Client();
+            }
+            else
+            {
+                string[] parsingTextInWorker = text.Split('#');
+
+                Client client = new Client();
+
+                if (!string.IsNullOrEmpty((string)parsingTextInWorker[0]))
+                {
+                    client.lastName = parsingTextInWorker[0];
+                }
+
+                if (!string.IsNullOrEmpty((string)parsingTextInWorker[1]))
+                {
+                    client.firstName = parsingTextInWorker[1];
+                }
+
+                if (!string.IsNullOrEmpty((string)parsingTextInWorker[2]))
+
+                { 
+                    client.patronymic = parsingTextInWorker[2];
+                }
+
+                if(long.TryParse(parsingTextInWorker[3], out long phoneNumber))
+                {
+                    client.phone = phoneNumber;
+                }
+
+                if (!string.IsNullOrEmpty((string)parsingTextInWorker[4]))
+                {
+                    client.seriesAndNumberPasport = parsingTextInWorker[4];
+
+                }
+
+                return client;
+            }
+        }
+
+        public void PrintAllClientsFromUser()
+        {
+            GetAllClient();
+
+            foreach(Client client in clients)
+            {
+                Console.WriteLine(user.ClientInfo(client));
+            }
+        }
+
+        public void PrintAllClientsFromManager()
+        {
+            foreach(Client client in clients)
+            {
+                Console.WriteLine(value: client.ToString);
+            }
+        }
     }
 }

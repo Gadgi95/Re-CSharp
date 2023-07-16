@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task_10._8v2
 {
-    internal interface IUser
+    public interface IUser
     {
-        void ReadInfoClients(Clients client);
+        public void ReadInfoClients(Client client);
 
-        void SetPhoneNumbet(Clients clients);
+        public void SetPhoneNumbet(Client client);
 
 
     }
