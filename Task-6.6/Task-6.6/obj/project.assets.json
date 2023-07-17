@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\Gadgi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\C#\\skillbox\\CSharp\\Task-6.6\\Task-6.6\\Task-6.6.csproj",
+      "projectUniqueName": "C:\\Users\\Gadgi\\Desktop\\C#\\gitHub\\Re-Csharp\\Gadgi95\\Re-CSharp\\Task-6.6\\Task-6.6\\Task-6.6.csproj",
       "projectName": "Task-6.6",
-      "projectPath": "C:\\Users\\user\\Desktop\\C#\\skillbox\\CSharp\\Task-6.6\\Task-6.6\\Task-6.6.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\C#\\skillbox\\CSharp\\Task-6.6\\Task-6.6\\obj\\",
+      "projectPath": "C:\\Users\\Gadgi\\Desktop\\C#\\gitHub\\Re-Csharp\\Gadgi95\\Re-CSharp\\Task-6.6\\Task-6.6\\Task-6.6.csproj",
+      "packagesPath": "C:\\Users\\Gadgi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gadgi\\Desktop\\C#\\gitHub\\Re-Csharp\\Gadgi95\\Re-CSharp\\Task-6.6\\Task-6.6\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gadgi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }

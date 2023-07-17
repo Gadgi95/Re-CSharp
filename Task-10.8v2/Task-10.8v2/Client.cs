@@ -10,33 +10,33 @@ namespace Task_10._8v2
     {
         internal string lastName
         {
-            get => lastName;
-            set => lastName = value;
+            get { return this.lastName; }
+            set { this.lastName = value; }
         }
         internal string firstName
         {
-            get => firstName;
-            set => firstName = value;
+            get { return this.firstName; }
+            set { this.firstName = value; }
         }
         internal string patronymic
         {
-            get => patronymic;
-            set => patronymic = value;
+            get { return this.patronymic; }
+            set { this.patronymic = value; }
         }
         internal long phone
         {
-            get => phone;
-            set => phone = value;
+            get { return this.phone; }
+            set { this.phone = value; }
         }
         internal string seriesAndNumberPasport
         {
-            get => seriesAndNumberPasport;
-            set => seriesAndNumberPasport = value;
+            get { return this.seriesAndNumberPasport; }
+            set { this.seriesAndNumberPasport = value; }
         }
         internal List<Clients> listOfClients
         {
-            get => listOfClients;
-            set => listOfClients = value;
+            get { return this.listOfClients; }
+            set { this.listOfClients = value; }
 
         }
 

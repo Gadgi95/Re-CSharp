@@ -8,8 +8,6 @@ namespace Task_10._8v2
 {
     internal class Manager : User
     {
-        User user = new User();
-
         Clients clients = new Clients();
 
         public Manager() { }
@@ -30,6 +28,8 @@ namespace Task_10._8v2
             {
                 Client client = clients.SearchClientForPhoneNumber(phoneNumber);
 
+                SaveChangedInfo(ChangeInfoClient(client.lastName, newLastName));
+
                 client.lastName = newLastName;
 
                 return true;
@@ -45,6 +45,8 @@ namespace Task_10._8v2
             }
             else
             {
+                SaveChangedInfo(ChangeInfoClient(client.firstName, newFirstName));
+
                 client.firstName = newFirstName;
                 return true;
             }
@@ -58,6 +60,8 @@ namespace Task_10._8v2
             }
             else
             {
+                SaveChangedInfo(ChangeInfoClient(client.patronymic, newPatronymic));
+
                 client.patronymic = newPatronymic;
                 return true;
             }
@@ -65,12 +69,14 @@ namespace Task_10._8v2
 
         public bool AddClientPhone(Client client, string newPhone)
         {
-            if(int.TryParse(newPhone, out int result))
+            if(long.TryParse(newPhone, out long result))
             {
                 return false;
             }
             else
             {
+                SaveChangedInfo(ChangeInfoClient(client.phone.ToString(), newPhone.ToString()));
+
                 client.phone = result;
                 return true;
             }
@@ -84,9 +90,20 @@ namespace Task_10._8v2
             }
             else
             {
+                SaveChangedInfo(ChangeInfoClient(client.seriesAndNumberPasport, newSeries));
                 client.seriesAndNumberPasport = newSeries;
                 return true;
             }
+        }
+
+        public override string ChangeInfoClient(string whatChanged, string typeOfChanged)
+        {
+            DateTime dateTime = DateTime.Now;
+            string whatChangedInfo = whatChanged;
+            string typeOfChangedInfo = typeOfChanged;
+            string whoChangedIt = "manager";
+
+            return whatChangedInfo;
         }
     }
 }

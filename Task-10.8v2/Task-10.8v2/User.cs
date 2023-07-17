@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace Task_10._8v2
     {
         public User() { }
 
-        
         public void ReadInfoClients(Client client)
         {
             if (client == null)
@@ -32,7 +32,10 @@ namespace Task_10._8v2
 
             if (string.IsNullOrEmpty(readline) && long.TryParse(readline, out long newPhone))
             {
+                SaveChangedInfo(ChangeInfoClient(client.phone.ToString(), newPhone.ToString()));
+
                 client.phone = newPhone;
+
                 Console.WriteLine("Номер телефона успешно изменен");
             }
             else
@@ -63,6 +66,43 @@ namespace Task_10._8v2
         public string GetSeriesAndNumberPasportFromeUser(Client client)
         {
             return System.Text.RegularExpressions.Regex.Replace(client.seriesAndNumberPasport, @"\d", "*");
+        }
+
+        public virtual string ChangeInfoClient(string whatChanged, string typeOfChanged)
+        {
+            DateTime dateTime = DateTime.Now;
+
+            string whoChangedIt = "user";
+
+            return dateTime.ToString() + " " + whatChanged + " " + typeOfChanged + " " + whoChangedIt;
+        }
+
+        public void SaveChangedInfo(string changedInfo)
+        {
+            string path = @"List changed info of clients.txt";
+
+            if (!File.Exists(path))
+            {
+
+                File.WriteAllText(path, changedInfo);
+            }
+            else
+            {
+                string readFile = File.ReadAllText(path); // Путь к фаилу
+
+                string[] arrayReadFile = readFile.Split(Environment.NewLine); //Создание и заполнение массива строками из фаила
+
+                string[] newFile = new string[arrayReadFile.Length + 1];
+
+                foreach (string file in arrayReadFile)
+                {
+                    newFile[0] = file;
+                }
+                newFile[arrayReadFile.Length - 1] = changedInfo;
+
+                File.WriteAllLines(path, newFile);
+
+            }
         }
 
 
