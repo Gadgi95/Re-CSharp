@@ -23,22 +23,22 @@
             Client client = new Client();
 
             Console.WriteLine("Введите фамилию сотрудника:");
-            client.lastName = Console.ReadLine();
+            client.LastName = Console.ReadLine();
 
             Console.WriteLine("Введите имя сотрудника:");
-            client.firstName = Console.ReadLine();
+            client.FirstName = Console.ReadLine();
 
             Console.WriteLine("Введите отчество сотрудника:");
-            client.patronymic = Console.ReadLine();
+            client.Patronymic = Console.ReadLine();
 
             Console.WriteLine("Введите номер телефона сотрудника в формате \"89991234567\":");
             if (long.TryParse(Console.ReadLine(), out long phone))
             {
-                client.phone = phone;
+                client.Phone = phone;
             }
 
             Console.WriteLine("Введите серию и номер паспорта:");
-            client.seriesAndNumberPasport = Console.ReadLine();
+            client.SeriesAndNumberPasport = Console.ReadLine();
 
             if (!File.Exists(path))
             {
@@ -123,7 +123,7 @@
                 {
                     Client client = ParsingTextInClient(textClient);
 
-                    if(client.phone == phone)
+                    if(client.Phone == phone)
                     {
                          returnClient = client;
                     }
@@ -152,28 +152,28 @@
 
                 if (!string.IsNullOrEmpty((string)parsingTextInWorker[0]))
                 {
-                    client.lastName = parsingTextInWorker[0];
+                    client.LastName = parsingTextInWorker[0];
                 }
 
                 if (!string.IsNullOrEmpty((string)parsingTextInWorker[1]))
                 {
-                    client.firstName = parsingTextInWorker[1];
+                    client.FirstName = parsingTextInWorker[1];
                 }
 
                 if (!string.IsNullOrEmpty((string)parsingTextInWorker[2]))
 
                 { 
-                    client.patronymic = parsingTextInWorker[2];
+                    client.Patronymic = parsingTextInWorker[2];
                 }
 
                 if(long.TryParse(parsingTextInWorker[3], out long phoneNumber))
                 {
-                    client.phone = phoneNumber;
+                    client.Phone = phoneNumber;
                 }
 
                 if (!string.IsNullOrEmpty((string)parsingTextInWorker[4]))
                 {
-                    client.seriesAndNumberPasport = parsingTextInWorker[4];
+                    client.SeriesAndNumberPasport = parsingTextInWorker[4];
 
                 }
 

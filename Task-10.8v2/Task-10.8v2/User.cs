@@ -32,9 +32,9 @@ namespace Task_10._8v2
 
             if (string.IsNullOrEmpty(readline) && long.TryParse(readline, out long newPhone))
             {
-                SaveChangedInfo(ChangeInfoClient(client.phone.ToString(), newPhone.ToString()));
+                SaveChangedInfo(ChangeInfoClient(client.Phone.ToString(), newPhone.ToString()));
 
-                client.phone = newPhone;
+                client.Phone = newPhone;
 
                 Console.WriteLine("Номер телефона успешно изменен");
             }
@@ -52,10 +52,10 @@ namespace Task_10._8v2
         /// <returns>Строку информация о клиенте с засекреченными паспортными данными</returns>
         public virtual string ClientInfo(Client client)
         {
-            return $"Фамилия {client.lastName}"
-                          + $"\nИмя {client.firstName}"
-                          + $"\nОтчество {client.patronymic}"
-                          + $"\nТелефон {client.phone} "
+            return $"Фамилия {client.LastName}"
+                          + $"\nИмя {client.FirstName}"
+                          + $"\nОтчество {client.Patronymic}"
+                          + $"\nТелефон {client.Phone} "
                           + $"\nСерия и номер паспорта {GetSeriesAndNumberPasportFromeUser(client)}"; ;
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Task_10._8v2
         /// <returns>Выражение преобразует серию и номер паспорта в *</returns>
         public string GetSeriesAndNumberPasportFromeUser(Client client)
         {
-            return System.Text.RegularExpressions.Regex.Replace(client.seriesAndNumberPasport, @"\d", "*");
+            return System.Text.RegularExpressions.Regex.Replace(client.SeriesAndNumberPasport, @"\d", "*");
         }
 
         public virtual string ChangeInfoClient(string whatChanged, string typeOfChanged)

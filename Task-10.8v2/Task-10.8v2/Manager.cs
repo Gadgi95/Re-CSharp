@@ -28,9 +28,9 @@ namespace Task_10._8v2
             {
                 Client client = clients.SearchClientForPhoneNumber(phoneNumber);
 
-                SaveChangedInfo(ChangeInfoClient(client.lastName, newLastName));
+                SaveChangedInfo(ChangeInfoClient(client.LastName, newLastName));
 
-                client.lastName = newLastName;
+                client.LastName = newLastName;
 
                 return true;
             }
@@ -45,9 +45,9 @@ namespace Task_10._8v2
             }
             else
             {
-                SaveChangedInfo(ChangeInfoClient(client.firstName, newFirstName));
+                SaveChangedInfo(ChangeInfoClient(client.FirstName, newFirstName));
 
-                client.firstName = newFirstName;
+                client.FirstName = newFirstName;
                 return true;
             }
         }
@@ -60,9 +60,9 @@ namespace Task_10._8v2
             }
             else
             {
-                SaveChangedInfo(ChangeInfoClient(client.patronymic, newPatronymic));
+                SaveChangedInfo(ChangeInfoClient(client.Patronymic, newPatronymic));
 
-                client.patronymic = newPatronymic;
+                client.Patronymic = newPatronymic;
                 return true;
             }
         }
@@ -75,9 +75,9 @@ namespace Task_10._8v2
             }
             else
             {
-                SaveChangedInfo(ChangeInfoClient(client.phone.ToString(), newPhone.ToString()));
+                SaveChangedInfo(ChangeInfoClient(client.Phone.ToString(), newPhone.ToString()));
 
-                client.phone = result;
+                client.Phone = result;
                 return true;
             }
         }
@@ -90,8 +90,8 @@ namespace Task_10._8v2
             }
             else
             {
-                SaveChangedInfo(ChangeInfoClient(client.seriesAndNumberPasport, newSeries));
-                client.seriesAndNumberPasport = newSeries;
+                SaveChangedInfo(ChangeInfoClient(client.SeriesAndNumberPasport, newSeries));
+                client.SeriesAndNumberPasport = newSeries;
                 return true;
             }
         }

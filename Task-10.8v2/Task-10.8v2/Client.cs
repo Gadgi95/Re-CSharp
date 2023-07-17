@@ -8,35 +8,35 @@ namespace Task_10._8v2
 {
     public class Client
     {
-        internal string lastName
+        internal string LastName
         {
-            get { return this.lastName; }
-            set { this.lastName = value; }
+            get;
+            set;
         }
-        internal string firstName
+        internal string FirstName
         {
-            get { return this.firstName; }
-            set { this.firstName = value; }
+            get;
+            set;
         }
-        internal string patronymic
+        internal string Patronymic
         {
-            get { return this.patronymic; }
-            set { this.patronymic = value; }
+            get;
+            set;
         }
-        internal long phone
+        internal long Phone
         {
-            get { return this.phone; }
-            set { this.phone = value; }
+            get;
+            set;
         }
-        internal string seriesAndNumberPasport
+        internal string SeriesAndNumberPasport
         {
-            get { return this.seriesAndNumberPasport; }
-            set { this.seriesAndNumberPasport = value; }
+            get;
+            set;
         }
-        internal List<Clients> listOfClients
+        internal List<Clients> ListOfClients
         {
-            get { return this.listOfClients; }
-            set { this.listOfClients = value; }
+            get;
+            set;
 
         }
 
@@ -44,7 +44,7 @@ namespace Task_10._8v2
 
         public Client(long phone)
         {
-            this.phone = phone;
+            this.Phone = phone;
         }
 
         public Client(
@@ -54,20 +54,20 @@ namespace Task_10._8v2
             long phone,
             string seriesAndNumberPasport)
         {
-            this.lastName = lastName;
-            this.firstName = firstName;
-            this.patronymic = patronymic;
-            this.phone = phone;
-            this.seriesAndNumberPasport = seriesAndNumberPasport;
+            this.LastName = lastName;
+            this.FirstName = firstName;
+            this.Patronymic = patronymic;
+            this.Phone = phone;
+            this.SeriesAndNumberPasport = seriesAndNumberPasport;
         }
 
         public override string ToString()
         {
-            return $"Фамилия {lastName}"
-                          + $"#Имя {firstName}"
-                          + $"#Отчество {patronymic}"
-                          + $"#Телефон {phone}"
-                          + $"#Серия и номер паспорта {seriesAndNumberPasport}";
+            return $"Фамилия {LastName}"
+                          + $"#Имя {FirstName}"
+                          + $"#Отчество {Patronymic}"
+                          + $"#Телефон {Phone}"
+                          + $"#Серия и номер паспорта {SeriesAndNumberPasport}";
         } 
 
     }
