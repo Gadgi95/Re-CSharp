@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Task_10._8v2
 {
-    public class User : IUser
+
+    public class Consultant : IUser, Repository
     {
-        public User() { }
+        public Consultant() { }
+
+        //Реализация методов наследованных от интерфейса IUser
 
         public void ReadInfoClients(Client client)
         {
@@ -19,7 +22,7 @@ namespace Task_10._8v2
             }
             else
             {
-                string clientInfo = ClientInfo(client);
+                string clientInfo = GetClientInfo(client);
 
             }
 
@@ -43,29 +46,6 @@ namespace Task_10._8v2
                 Console.WriteLine("Введено пустое значение или данные, не соответствующие номеру телефона");
             }
 
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>Строку информация о клиенте с засекреченными паспортными данными</returns>
-        public virtual string ClientInfo(Client client)
-        {
-            return $"Фамилия {client.LastName}"
-                          + $"\nИмя {client.FirstName}"
-                          + $"\nОтчество {client.Patronymic}"
-                          + $"\nТелефон {client.Phone} "
-                          + $"\nСерия и номер паспорта {GetSeriesAndNumberPasportFromeUser(client)}"; ;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>Выражение преобразует серию и номер паспорта в *</returns>
-        public string GetSeriesAndNumberPasportFromeUser(Client client)
-        {
-            return System.Text.RegularExpressions.Regex.Replace(client.SeriesAndNumberPasport, @"\d", "*");
         }
 
         public virtual string ChangeInfoClient(string whatChanged, string typeOfChanged)
@@ -104,6 +84,33 @@ namespace Task_10._8v2
 
             }
         }
+
+
+        //Методы для получения информации о клиенте, с скрытыми паспортными данными
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>Строку информация о клиенте с засекреченными паспортными данными</returns>
+        public virtual string GetClientInfo(Client client)
+        {
+            return $"Фамилия {client.LastName}"
+                          + $"#Имя {client.FirstName}"
+                          + $"#Отчество {client.Patronymic}"
+                          + $"#Телефон {client.Phone} "
+                          + $"#Серия и номер паспорта {GetSeriesAndNumberPasportFromeUser(client)}";
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>Выражение преобразует серию и номер паспорта в *</returns>
+        public string GetSeriesAndNumberPasportFromeUser(Client client)
+        {
+            return System.Text.RegularExpressions.Regex.Replace(client.SeriesAndNumberPasport, @"\d", "*");
+        }
+
 
 
     }

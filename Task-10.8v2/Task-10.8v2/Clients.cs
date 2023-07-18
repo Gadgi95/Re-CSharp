@@ -2,7 +2,7 @@
 {
     public class Clients
     {
-        User user = new User();
+        Consultant user = new Consultant();
 
         public Clients() { }
 
@@ -11,13 +11,13 @@
         /// </summary>
         string path = @"List of clients.txt";
 
-        List<Client> clients = new List<Client>();
+        List<Client> listClients = new List<Client>();
 
         /// <summary>
         /// Добавление нового клиента, все данные вводятся через консоль
         /// </summary>
         /// <returns>Возвращает строку успешной записи клиента</returns>
-        public string AddNewClient()
+        public void AddNewClient()
 
         {
             Client client = new Client();
@@ -40,26 +40,16 @@
             Console.WriteLine("Введите серию и номер паспорта:");
             client.SeriesAndNumberPasport = Console.ReadLine();
 
-            if (!File.Exists(path))
-            {
-
-                File.WriteAllText(path, client.ToString());
-            }
-            else
-            {
-                string readFile = File.ReadAllText(path);
-
-                List<string> listOfClients = File.ReadAllLines(path).ToList();
-
-                listOfClients.Add(client.ToString());
-            }
-            return $"Клиент успешно добавлен в справочник";
+            SaveClientInTxt(client);
+            
         }
 
         public void AddNewClienOnlyPhoneNumber(long phone)
         {
             Client client = new Client(phone);
-            clients.Add(client);
+            listClients.Add(client);
+
+            SaveClientInTxt(client);
         }
 
         /// <summary>
@@ -181,22 +171,28 @@
             }
         }
 
-        public void PrintAllClientsFromUser()
+        public void SaveClientInTxt(Client client)
         {
-            GetAllClient();
-
-            foreach(Client client in clients)
+            if (!File.Exists(path))
             {
-                Console.WriteLine(user.ClientInfo(client));
+
+                File.WriteAllText(path, client.ToString());
             }
+            else
+            {
+                string readFile = File.ReadAllText(path);
+
+                List<string> listOfClients = File.ReadAllLines(path).ToList();
+
+                listOfClients.Add(client.ToString());
+
+                File.AppendAllLines(path, listOfClients);
+            }
+
+            Console.WriteLine("Клиент успешно добавлен в справочник");
+
         }
 
-        public void PrintAllClientsFromManager()
-        {
-            foreach(Client client in clients)
-            {
-                Console.WriteLine(value: client.ToString);
-            }
-        }
+
     }
 }

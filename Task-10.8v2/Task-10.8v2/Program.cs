@@ -5,10 +5,6 @@
  * 
  */
 
-User user;
-
-Manager manager;
-
 Clients clients = new Clients();
 
 bool programExecution = true;
@@ -28,7 +24,7 @@ switch (changeNum)
     case 1:
         Console.WriteLine("Вы вошли в  систему по пользователем \"Менеджер\"");
 
-        manager = new Manager();
+        Manager manager = new Manager();
 
         while (programExecution)
         {
@@ -45,7 +41,12 @@ switch (changeNum)
 
             if (input == "1")
             {
-                clients.PrintAllClientsFromManager();
+                List<string> listClientsToTxt = clients.GetAllClient();
+
+                foreach(string client in listClientsToTxt)
+                {
+                    Console.WriteLine(clients.ParsingTextInClient(client));
+                }
             }
             else if (input == "2")
             {
@@ -196,7 +197,7 @@ switch (changeNum)
 
     case 2:
         Console.WriteLine("Вы вошли в  систему по пользователем \"Консультант\"");
-        user = new User();
+        Consultant consultant = new Consultant();
 
         while (programExecution)
         {
@@ -209,8 +210,14 @@ switch (changeNum)
 
             if (input == "1")
             {
-                clients.PrintAllClientsFromUser();
-            
+                List<string> listClientsToTxt = clients.GetAllClient();
+
+                foreach (string clientTxt in listClientsToTxt)
+                {
+                    Client client = clients.ParsingTextInClient(clientTxt);
+                    Console.WriteLine(consultant.GetClientInfo(client));
+                }
+
             }
             else if (input == "2")
             {
@@ -222,7 +229,7 @@ switch (changeNum)
                 {
                     Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
 
-                    user.SetPhoneNumbet(clientChangePhoneNumber);
+                    consultant.SetPhoneNumbet(clientChangePhoneNumber);
                 }
                 else
                 {

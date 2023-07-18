@@ -6,17 +6,34 @@ using System.Threading.Tasks;
 
 namespace Task_10._8v2
 {
-    internal class Manager : User
+    internal class Manager : Consultant
     {
         Clients clients = new Clients();
 
         public Manager() { }
 
-        public override string ClientInfo(Client client)
+        //Переопределен метод, т.к. в классе Consultant паспортные данные были скрыты
+        public override string GetClientInfo(Client client)
         {
-            return client.ToString();
+            return $"Фамилия {client.LastName}"
+                          + $"#Имя {client.FirstName}"
+                          + $"#Отчество {client.Patronymic}"
+                          + $"#Телефон {client.Phone} "
+                          + $"#Серия и номер паспорта {client.SeriesAndNumberPasport}";
         }
 
+        //Переопределен метод, для записи изменений от лица менеджера 
+        public override string ChangeInfoClient(string whatChanged, string typeOfChanged)
+        {
+            DateTime dateTime = DateTime.Now;
+            string whatChangedInfo = whatChanged;
+            string typeOfChangedInfo = typeOfChanged;
+            string whoChangedIt = "manager";
+
+            return dateTime.ToString() + " " + whatChanged + " " + typeOfChanged + " " + whoChangedIt;
+        }
+
+        // Методы добавления информации для клиентов
         public bool AddClientLastName(long phoneNumber, string newLastName) 
         {  
             if(string.IsNullOrEmpty(newLastName))
@@ -96,14 +113,5 @@ namespace Task_10._8v2
             }
         }
 
-        public override string ChangeInfoClient(string whatChanged, string typeOfChanged)
-        {
-            DateTime dateTime = DateTime.Now;
-            string whatChangedInfo = whatChanged;
-            string typeOfChangedInfo = typeOfChanged;
-            string whoChangedIt = "manager";
-
-            return whatChangedInfo;
-        }
     }
 }

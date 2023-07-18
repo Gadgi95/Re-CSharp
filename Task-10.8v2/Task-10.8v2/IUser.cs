@@ -13,5 +13,8 @@ namespace Task_10._8v2
         public void SetPhoneNumbet(Client client);
 
 
+
+
+
     }
 }

@@ -33,12 +33,6 @@ namespace Task_10._8v2
             get;
             set;
         }
-        internal List<Clients> ListOfClients
-        {
-            get;
-            set;
-
-        }
 
         public Client() { }
 
@@ -54,11 +48,11 @@ namespace Task_10._8v2
             long phone,
             string seriesAndNumberPasport)
         {
-            this.LastName = lastName;
-            this.FirstName = firstName;
-            this.Patronymic = patronymic;
-            this.Phone = phone;
-            this.SeriesAndNumberPasport = seriesAndNumberPasport;
+            LastName = lastName;
+            FirstName = firstName;
+            Patronymic = patronymic;
+            Phone = phone;
+            SeriesAndNumberPasport = seriesAndNumberPasport;
         }
 
         public override string ToString()
