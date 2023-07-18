@@ -39,15 +39,18 @@ namespace Task_10._8v2
             if(string.IsNullOrEmpty(newLastName))
             {
                 return false;
-
             }
             else
             {
-                Client client = clients.SearchClientForPhoneNumber(phoneNumber);
+                Client clientOldData = clients.SearchClientForPhoneNumber(phoneNumber);
 
-                SaveChangedInfo(ChangeInfoClient(client.LastName, newLastName));
+                Client clientNewData = new Client();
+                clientNewData.LastName = newLastName;
+                clientNewData.Phone = phoneNumber;
 
-                client.LastName = newLastName;
+                SaveChangedInfo(ChangeInfoClient(clientOldData.LastName, newLastName));
+
+                clients.OverwritingTheClientWithNewDataInTxt(clientNewData, clientOldData);
 
                 return true;
             }

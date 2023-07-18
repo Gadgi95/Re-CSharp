@@ -58,7 +58,7 @@ switch (changeNum)
                 {
                     Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
 
-                    manager.SetPhoneNumbet(clientChangePhoneNumber);
+                    manager.SetPhoneNumber(clientChangePhoneNumber);
                 }
                 else
                 {
@@ -215,6 +215,7 @@ switch (changeNum)
                 foreach (string clientTxt in listClientsToTxt)
                 {
                     Client client = clients.ParsingTextInClient(clientTxt);
+
                     Console.WriteLine(consultant.GetClientInfo(client));
                 }
 
@@ -223,13 +224,21 @@ switch (changeNum)
             {
                 Console.WriteLine("Введите текущий номер клиента, для изменения номера телефона:");
 
-                string inputClientLastName = Console.ReadLine();
+                string inputClient = Console.ReadLine();
 
-                if (!string.IsNullOrEmpty(inputClientLastName) && long.TryParse(inputClientLastName, out long phoneNumber))
+                if (!string.IsNullOrEmpty(inputClient) && long.TryParse(inputClient, out long phoneNumber))
                 {
                     Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
 
-                    consultant.SetPhoneNumbet(clientChangePhoneNumber);
+                    Console.WriteLine("Введите новый номер клиента:");
+
+                    string inputClientNewPhone = Console.ReadLine();
+
+                    long.TryParse(inputClientNewPhone, out long newPhone);
+
+                    clientChangePhoneNumber.Phone = newPhone;
+
+                    consultant.SetPhoneNumber(clientChangePhoneNumber);
                 }
                 else
                 {

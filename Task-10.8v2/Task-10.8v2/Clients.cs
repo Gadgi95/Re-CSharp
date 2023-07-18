@@ -186,11 +186,22 @@
 
                 listOfClients.Add(client.ToString());
 
-                File.AppendAllLines(path, listOfClients);
+                File.WriteAllLines(path, listOfClients);
             }
 
             Console.WriteLine("Клиент успешно добавлен в справочник");
 
+        }
+
+        public void OverwritingTheClientWithNewDataInTxt(Client clientNewData, Client clientOldData)
+        {
+            string clientTxt = clientNewData.ToString();
+
+            listClients.Remove(clientOldData);
+
+            listClients.Add(clientNewData);
+
+            SaveClientInTxt(clientNewData);
         }
 
 

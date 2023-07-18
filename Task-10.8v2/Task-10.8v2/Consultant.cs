@@ -29,7 +29,7 @@ namespace Task_10._8v2
 
         }
 
-        public void SetPhoneNumbet(Client client)
+        public void SetPhoneNumber(Client client)
         {
             string readline = Console.ReadLine();
 

@@ -10,7 +10,7 @@ namespace Task_10._8v2
     {
         public void ReadInfoClients(Client client);
 
-        public void SetPhoneNumbet(Client client);
+        public void SetPhoneNumber(Client client);
 
 
 
