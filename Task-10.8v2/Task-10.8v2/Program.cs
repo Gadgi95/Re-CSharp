@@ -5,9 +5,9 @@
  * 
  */
 
-Clients clients = new Clients();
-
 bool programExecution = true;
+
+Client client = new Client();
 
 
 Console.WriteLine("Добро пожаловать в справочник клиентов компании" +
@@ -41,22 +41,23 @@ switch (changeNum)
 
             if (input == "1")
             {
-                List<string> listClientsToTxt = clients.GetAllClient();
+                Client[] ArrayClient = client.GetAllClient();
 
-                foreach(string client in listClientsToTxt)
+                foreach(var clients in ArrayClient)
                 {
-                    Console.WriteLine(clients.ParsingTextInClient(client));
+                    Console.WriteLine(clients);
                 }
+
             }
             else if (input == "2")
             {
-                Console.WriteLine("Введите телефон клиента, для изменения номера телефона:");
+                Console.WriteLine("Введите текущий телефон клиента, для изменения номера телефона:");
 
                 string inputClientPhoneNumber = Console.ReadLine();
 
                 if (!string.IsNullOrEmpty(inputClientPhoneNumber) && long.TryParse(inputClientPhoneNumber, out long phoneNumber))
                 {
-                    Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
+                    Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
                     manager.SetPhoneNumber(clientChangePhoneNumber);
                 }
@@ -74,7 +75,7 @@ switch (changeNum)
 
                 if (!string.IsNullOrEmpty(inputClientPhoneNumber) && long.TryParse(inputClientPhoneNumber, out long phoneNumber))
                 {
-                    Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
+                    Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
                     Console.WriteLine("Введите фамилию клиента:");
 
@@ -104,7 +105,7 @@ switch (changeNum)
 
                 if (!string.IsNullOrEmpty(inputClientPhoneNumber) && long.TryParse(inputClientPhoneNumber, out long phoneNumber))
                 {
-                    Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
+                    Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
                     Console.WriteLine("Введите имя клиента:");
 
@@ -116,6 +117,7 @@ switch (changeNum)
                     }
                     else
                     {
+
                         manager.AddClientLastName(phoneNumber, newFirstName);
 
                     }
@@ -134,7 +136,7 @@ switch (changeNum)
 
                 if (!string.IsNullOrEmpty(inputClientPhoneNumber) && long.TryParse(inputClientPhoneNumber, out long phoneNumber))
                 {
-                    Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
+                    Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
                     Console.WriteLine("Введите имя клиента:");
 
@@ -164,7 +166,7 @@ switch (changeNum)
 
                 if (!string.IsNullOrEmpty(inputClientPhoneNumber) && long.TryParse(inputClientPhoneNumber, out long phoneNumber))
                 {
-                    Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
+                    Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
                     Console.WriteLine("Введите серию и номер паспорта клиента:");
 
@@ -210,12 +212,10 @@ switch (changeNum)
 
             if (input == "1")
             {
-                List<string> listClientsToTxt = clients.GetAllClient();
+                Client[] ArrayClient = client.GetAllClient();
 
-                foreach (string clientTxt in listClientsToTxt)
+                foreach (var clients in ArrayClient)
                 {
-                    Client client = clients.ParsingTextInClient(clientTxt);
-
                     Console.WriteLine(consultant.GetClientInfo(client));
                 }
 
@@ -228,7 +228,7 @@ switch (changeNum)
 
                 if (!string.IsNullOrEmpty(inputClient) && long.TryParse(inputClient, out long phoneNumber))
                 {
-                    Client clientChangePhoneNumber = clients.SearchClientForPhoneNumber(phoneNumber);
+                    Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
                     Console.WriteLine("Введите новый номер клиента:");
 

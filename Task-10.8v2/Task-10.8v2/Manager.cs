@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Task_10._8v2
 {
+    /// <summary>
+    /// Изменить все методы использующие методы класса Clients!!!
+    /// </summary>
     internal class Manager : Consultant
     {
-        Clients clients = new Clients();
+
+        Client client = new Client();
 
         public Manager() { }
 
@@ -34,23 +38,23 @@ namespace Task_10._8v2
         }
 
         // Методы добавления информации для клиентов
-        public bool AddClientLastName(long phoneNumber, string newLastName) 
-        {  
-            if(string.IsNullOrEmpty(newLastName))
+        public bool AddClientLastName(long phoneNumber, string newLastName)
+        {
+            if (string.IsNullOrEmpty(newLastName))
             {
                 return false;
             }
             else
             {
-                Client clientOldData = clients.SearchClientForPhoneNumber(phoneNumber);
+                Client clientOldLastName = client.SearchClientForPhone(phoneNumber);
 
                 Client clientNewData = new Client();
                 clientNewData.LastName = newLastName;
                 clientNewData.Phone = phoneNumber;
 
-                SaveChangedInfo(ChangeInfoClient(clientOldData.LastName, newLastName));
+                SaveChangedInfo(ChangeInfoClient(clientOldLastName.LastName, newLastName));
 
-                clients.OverwritingTheClientWithNewDataInTxt(clientNewData, clientOldData);
+                //client.OverwritingTheClientWithNewDataInTxt(clientNewData, clientOldLastName);
 
                 return true;
             }

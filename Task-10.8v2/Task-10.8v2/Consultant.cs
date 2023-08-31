@@ -33,7 +33,7 @@ namespace Task_10._8v2
         {
             string readline = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(readline) && long.TryParse(readline, out long newPhone))
+            if (!string.IsNullOrEmpty(readline) && long.TryParse(readline, out long newPhone))
             {
                 SaveChangedInfo(ChangeInfoClient(client.Phone.ToString(), newPhone.ToString()));
 
@@ -85,14 +85,6 @@ namespace Task_10._8v2
             }
         }
 
-
-        //Методы для получения информации о клиенте, с скрытыми паспортными данными
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>Строку информация о клиенте с засекреченными паспортными данными</returns>
         public virtual string GetClientInfo(Client client)
         {
             return $"Фамилия {client.LastName}"
@@ -101,11 +93,7 @@ namespace Task_10._8v2
                           + $"#Телефон {client.Phone} "
                           + $"#Серия и номер паспорта {GetSeriesAndNumberPasportFromeUser(client)}";
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        /// <returns>Выражение преобразует серию и номер паспорта в *</returns>
+
         public string GetSeriesAndNumberPasportFromeUser(Client client)
         {
             return System.Text.RegularExpressions.Regex.Replace(client.SeriesAndNumberPasport, @"\d", "*");
