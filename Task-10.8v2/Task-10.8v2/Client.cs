@@ -183,10 +183,5 @@ namespace Task_10._8v2
             return searchingClient;
 
         }
-
-
-
-
-
     }
 }

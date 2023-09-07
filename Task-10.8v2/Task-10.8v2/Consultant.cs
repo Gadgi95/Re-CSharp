@@ -8,47 +8,31 @@ using System.Threading.Tasks;
 namespace Task_10._8v2
 {
 
-    public class Consultant : IUser, Repository
+    public class Consultant : BaseUser
     {
         public Consultant() { }
 
-        //Реализация методов наследованных от интерфейса IUser
-
-        public void ReadInfoClients(Client client)
+        public override void ReadInfoClients(long phone)
         {
-            if (client == null)
-            {
-                throw new ArgumentNullException("Клиент не найден");
-            }
-            else
-            {
-                string clientInfo = GetClientInfo(client);
+            Client client = new Client();
+                
+            client.SearchClientForPhone(phone);
 
-            }
-
+            string clientInfo = GetClientInfo(client.Phone);
 
         }
 
-        public void SetPhoneNumber(Client client)
+        public override void SetPhoneNumber(long phone)
         {
-            string readline = Console.ReadLine();
-
-            if (!string.IsNullOrEmpty(readline) && long.TryParse(readline, out long newPhone))
-            {
-                SaveChangedInfo(ChangeInfoClient(client.Phone.ToString(), newPhone.ToString()));
-
-                client.Phone = newPhone;
-
-                Console.WriteLine("Номер телефона успешно изменен");
-            }
-            else
-            {
-                Console.WriteLine("Введено пустое значение или данные, не соответствующие номеру телефона");
-            }
+            Client client = new Client();
+            client.SearchClientForPhone(phone);
+            SaveChangedInfo(ChangeInfoClient(client.Phone.ToString(), phone.ToString()));
+            client.Phone = phone;
+            Console.WriteLine("Номер телефона успешно изменен");
 
         }
 
-        public virtual string ChangeInfoClient(string whatChanged, string typeOfChanged)
+        public override string ChangeInfoClient(string whatChanged, string typeOfChanged)
         {
             DateTime dateTime = DateTime.Now;
 
@@ -57,7 +41,7 @@ namespace Task_10._8v2
             return dateTime.ToString() + " " + whatChanged + " " + typeOfChanged + " " + whoChangedIt;
         }
 
-        public void SaveChangedInfo(string changedInfo)
+        public override void SaveChangedInfo(string changedInfo)
         {
             string path = @"List changed info of clients.txt";
 
@@ -85,8 +69,12 @@ namespace Task_10._8v2
             }
         }
 
-        public virtual string GetClientInfo(Client client)
+        public override string GetClientInfo(long phone)
         {
+            Client client = new Client();
+
+            client.SearchClientForPhone(phone);
+
             return $"Фамилия {client.LastName}"
                           + $"#Имя {client.FirstName}"
                           + $"#Отчество {client.Patronymic}"

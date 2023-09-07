@@ -59,7 +59,7 @@ switch (changeNum)
                 {
                     Client clientChangePhoneNumber = client.SearchClientForPhone(phoneNumber);
 
-                    manager.SetPhoneNumber(clientChangePhoneNumber);
+                    manager.SetPhoneNumber(clientChangePhoneNumber.Phone);
                 }
                 else
                 {
@@ -216,7 +216,7 @@ switch (changeNum)
 
                 foreach (var clients in ArrayClient)
                 {
-                    Console.WriteLine(consultant.GetClientInfo(client));
+                    Console.WriteLine(consultant.GetClientInfo(client.Phone));
                 }
 
             }
@@ -238,7 +238,7 @@ switch (changeNum)
 
                     clientChangePhoneNumber.Phone = newPhone;
 
-                    consultant.SetPhoneNumber(clientChangePhoneNumber);
+                    consultant.SetPhoneNumber(clientChangePhoneNumber.Phone);
                 }
                 else
                 {

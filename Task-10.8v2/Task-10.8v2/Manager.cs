@@ -9,16 +9,16 @@ namespace Task_10._8v2
     /// <summary>
     /// Изменить все методы использующие методы класса Clients!!!
     /// </summary>
-    internal class Manager : Consultant
+    internal class Manager : Consultant 
     {
-
-        Client client = new Client();
-
         public Manager() { }
 
-        //Переопределен метод, т.к. в классе Consultant паспортные данные были скрыты
-        public override string GetClientInfo(Client client)
+        public override string GetClientInfo(long phone)
         {
+            Client client = new Client();
+
+            client.SearchClientForPhone(phone);
+
             return $"Фамилия {client.LastName}"
                           + $"#Имя {client.FirstName}"
                           + $"#Отчество {client.Patronymic}"
@@ -46,16 +46,14 @@ namespace Task_10._8v2
             }
             else
             {
-                Client clientOldLastName = client.SearchClientForPhone(phoneNumber);
+                Client clientOldLastName = new Client();
+                clientOldLastName.SearchClientForPhone(phoneNumber);
 
                 Client clientNewData = new Client();
                 clientNewData.LastName = newLastName;
                 clientNewData.Phone = phoneNumber;
 
                 SaveChangedInfo(ChangeInfoClient(clientOldLastName.LastName, newLastName));
-
-                //client.OverwritingTheClientWithNewDataInTxt(clientNewData, clientOldLastName);
-
                 return true;
             }
         }
